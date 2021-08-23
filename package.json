@@ -1,0 +1,11 @@
+{
+  "name": "nick_mvp",
+  "version": "1.0.0",
+  "description": "hack reactor nyc38 mvp project",
+  "main": "Index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Nick Knowles",
+  "license": "ISC"
+}
