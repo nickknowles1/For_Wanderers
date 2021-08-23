@@ -2,10 +2,30 @@
   "name": "nick_mvp",
   "version": "1.0.0",
   "description": "hack reactor nyc38 mvp project",
-  "main": "Index.js",
+  "main": "/Server/Index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "nodemon ./Server/Index.js",
+    "build-dev": "webpack --mode development --watch"
   },
   "author": "Nick Knowles",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@babel/preset-react": "^7.14.5",
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-native": "^0.65.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
+  }
 }

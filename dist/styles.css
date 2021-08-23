@@ -1,0 +1,7 @@
+.main-div {
+  grid-template-columns: 1fr 1fr;
+  border: solid 1px;
+  border-color: black;
+  height: 500px;
+  width: auto;
+}
