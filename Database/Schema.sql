@@ -16,7 +16,8 @@ create table places (
   wantToGo smallint,
   photoURL varchar,
   description varchar,
-  date varchar
+  date varchar,
+  points smallint
 );
 
 create table friends (

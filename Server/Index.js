@@ -22,6 +22,11 @@ app.get('/search', (req, res) => {
   controllers.handleGoogleSearchRequest(req.query.query, res);
 })
 
+app.get('/searchDescriptions', (req, res) => {
+  console.log(req.query.query);
+  controllers.handleGoogleSearchDescriptionsRequest(req.query.query, res)
+})
+
 app.get('/getAllCards', (req, res) => {
   db.getAllCardsFromDatabase()
   .then((results) => {

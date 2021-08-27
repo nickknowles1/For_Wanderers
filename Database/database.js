@@ -11,8 +11,8 @@ dbClient.connect()
 const handleCreateNewPlaceInDatabase =function(obj) {
   let date = new Date().toString();
   return dbClient.query(`INSERT INTO places (name, beenhere, date, wanttogo,
-    photourl, description) VALUES (${obj.name}, 0, '${date}', 0,
-    ${obj.photoURL}, 'this is empty for now') RETURNING *`)
+    photourl, description, points) VALUES (${obj.name}, 0, '${date}', 0,
+    ${obj.photoURL}, ${obj.description}, 50) RETURNING *`)
 }
 
 const getAllCardsFromDatabase = function() {
@@ -20,10 +20,8 @@ const getAllCardsFromDatabase = function() {
 }
 
 const getUserCardsFromDatabase = function(obj) {
-  dbClient.query(`SELECT * FROM traveler_places WHERE traveler = ${obj.travelerID}`)
-  .then((results) => {
-    console.log(results.rows);
-  })
+  return dbClient.query(`SELECT * FROM traveler_places INNER JOIN places
+  ON place = place_id WHERE traveler = ${obj.travelerID}`)
 }
 
 const handleAddToUserPlacesInDatabase = function(obj) {

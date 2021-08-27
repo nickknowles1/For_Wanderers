@@ -23,12 +23,15 @@ class App extends React.Component {
       currentCard: {},
       photoSelection: [],
       photoIndex: 0,
+      descIndex: 0,
       photo: '',
       allCardsRolodex: [],
       userCardsRolodex: [],
       showCreateCardModal: false,
       showCardModal: false,
-      itemSearch: ''
+      itemSearch: '',
+      itemDescription: '',
+      descriptionSelection: []
     }
     this.updateAllCardsSlider = this.updateAllCardsSlider.bind(this);
     this.updateCollectedCardsSlider = this.updateCollectedCardsSlider.bind(this);
@@ -62,9 +65,9 @@ class App extends React.Component {
         })
         results.data.sort((a, b) => {
           if (a.date < b.date) {
-            return 1;
-          } else {
             return -1;
+          } else {
+            return 1;
           }
         });
         this.setState({ userCardsRolodex: results.data })
@@ -130,14 +133,18 @@ class App extends React.Component {
           handleHideCreateCardModal={this.handleHideCreateCardModal}
           handleUpdateMainAppState={this.handleUpdateMainAppState}
           photoSelection={this.state.photoSelection}
+          descriptionSelection={this.state.descriptionSelection}
           photoIndex={this.state.photoIndex}
+          descIndex={this.state.descIndex}
           photo={this.state.photo}
-          itemSearch={this.state.itemSearch} />
+          itemSearch={this.state.itemSearch}
+          itemDescription={this.state.itemDescription} />
         <CardModal photo={this.state.photo}
           show={this.state.showCardModal}
           updateAllCardsSlider={this.updateAllCardsSlider}
           handleHideCardModal={this.handleHideCardModal}
           handleUpdateMainAppState={this.handleUpdateMainAppState}
+          updateCollectedCardsSlider={this.updateCollectedCardsSlider}
           allCardsRolodex={this.state.allCardsRolodex}
           photoSelection={this.state.photoSelection}
           photoIndex={this.state.photoIndex}
@@ -152,7 +159,8 @@ class App extends React.Component {
           currentTravelerName={this.state.currentTravelerName}
           currentTravelerFriendCount={this.state.currentTravelerFriendCount}
           currentTravelerPoints={this.state.currentTravelerPoints} />
-        <CollectedSlider photo={this.state.photo} />
+        <CollectedSlider photo={this.state.photo}
+          userCardsRolodex={this.state.userCardsRolodex} />
         <AllCardsSlider allCardsRolodex={this.state.allCardsRolodex}
           handleUpdateMainAppState={this.handleUpdateMainAppState} />
       </div>

@@ -12,9 +12,11 @@ class User extends React.Component {
 
     this.handleSearchButtonClick = this.handleSearchButtonClick.bind(this);
     this.handleSearchInputChange = this.handleSearchInputChange.bind(this);
+    this.handleGetDescriptions = this.handleGetDescriptions.bind(this);
   }
 
   handleSearchButtonClick() {
+    this.handleGetDescriptions();
     for (let i = 0; i < this.props.allCardsRolodex.length; i++) {
       if (this.props.allCardsRolodex[i].name === this.state.searchedItem) {
         document.getElementById('search-field').value = '';
@@ -47,6 +49,32 @@ class User extends React.Component {
       })
   }
 
+  handleGetDescriptions() {
+    axios.get(`http://localhost:3000/searchDescriptions/?query=${this.state.searchedItem} wikipedia`)
+      .then((results) => {
+        console.log(results.data)
+        let newDescriptions = [];
+        for (let i = 0; i < results.data.length; i++) {
+          if (results.data[i].snippet === undefined) {
+            continue;
+          }
+          console.log(results.data[i].snippet);
+          newDescriptions.push(results.data[i].snippet)
+        }
+        this.props.handleUpdateMainAppState({
+          descriptionSelection: newDescriptions,
+          itemDescription: newDescriptions[0]
+        })
+      })
+      .then(() => {
+        console.log('I am here')
+        this.props.handleShowCreateCardModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+  }
+
   handleSearchInputChange(e) {
     this.setState({ searchedItem: e.target.value });
   }
@@ -64,7 +92,7 @@ class User extends React.Component {
         </div>
         <div className="user-add-card">
           <input type="text" id="search-field" onChange={(e) => { this.handleSearchInputChange(e) }}></input><br></br>
-          <button type="submit" onClick={(e) => { this.handleSearchButtonClick(e) }}>Find Or Create Card</button>
+          <button className="search-button" type="submit" onClick={(e) => { this.handleSearchButtonClick(e) }}>Find Or Create Card</button>
         </div>
       </div>
     )

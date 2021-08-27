@@ -32,8 +32,29 @@ function CreateCardModal(props) {
     props.handleUpdateMainAppState(newState);
   }
 
+  const handleLeftDescription = function () {
+    let index = props.descIndex;
+    index--;
+    if (index < 0) {
+      index = props.photoSelection.length - 1;
+    }
+    let newState = { itemDescription: props.descriptionSelection[index], descIndex: index };
+    props.handleUpdateMainAppState(newState);
+  }
+
+  const handleRightDescription = function () {
+    console.log(props.itemDescription)
+    let index = props.descIndex;
+    index++;
+    if (index >= props.photoSelection.length) {
+      index = 0;
+    }
+    let newState = { itemDescription: props.descriptionSelection[index], descIndex: index };
+    props.handleUpdateMainAppState(newState);
+  }
+
   const handleCreateCardClick = function () {
-    axios.post(`http://localhost:3000/createNew/?name='${props.itemSearch}'&photoURL='${props.photo}'`)
+    axios.post(`http://localhost:3000/createNew/?name='${props.itemSearch}'&photoURL='${props.photo}'&description='${props.itemDescription}'`)
       .then((results) => {
         console.log(results.data);
         props.updateAllCardsSlider();
@@ -64,6 +85,11 @@ function CreateCardModal(props) {
           <BiRightArrow onClick={() => { handleRightArrowClick() }} />
         </div>
         <div className="modal-footer-image">
+          <BiLeftArrow onClick={() => { handleLeftDescription() }} />
+          <BiRightArrow onClick={() => { handleRightDescription() }} />
+          <br></br>
+          <p>{props.itemDescription}</p>
+          <br></br>
           <button className="create-button" onClick={() => { handleCreateCardClick() }}>CREATE CARD</button>
         </div>
       </div>

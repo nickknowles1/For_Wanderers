@@ -15,7 +15,8 @@ function CardModal(props) {
   const handleAddToUserCards = function () {
     axios.post(`http://localhost:3000/addToUserPlaces/?travelerID=${props.currentTravelerID}&placeID=${props.currentCard.place_id}`)
       .then((results) => {
-        console.log(results.data);
+        props.updateCollectedCardsSlider();
+        //console.log(results.data);
       })
       .catch((err) => {
         console.error(err);

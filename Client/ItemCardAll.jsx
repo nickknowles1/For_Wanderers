@@ -27,7 +27,7 @@ class ItemCardAll extends React.Component {
         }}
         onClick={(e) => { this.handleCardClick(e) }}>
         <h3 className="create-card-name">{this.props.name}</h3>
-        <h5>{this.props.description}</h5>
+        <h5>{this.props.itemDescription}</h5>
         <h5>Been Here: {this.props.beenHere}</h5>
         <h5>Want To Go: {this.props.wantToGo}</h5>
       </div>

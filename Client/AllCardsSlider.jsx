@@ -26,7 +26,7 @@ class AllCardsSlider extends React.Component {
 
   render() {
     let items = this.state.items;
-    console.log(items);
+    console.log(items)
     return (
       <div className="all-cards-slider-div">
         <Carousel itemsToShow={2} pagination={false}>

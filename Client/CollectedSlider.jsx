@@ -42,11 +42,13 @@ class CollectedSlider extends React.Component {
   }
 
   render() {
-    let items = this.state.items;
+    let items = this.props.userCardsRolodex;
+    console.log(items);
     return (
       <div className="collected-slider-div">
         <Carousel itemsToShow={2} pagination={false}>
-          {items.map((item) => <ItemCardUser key={item.id} />)}
+          {items.map((item) => <ItemCardUser key={item.place_id}
+            item={item} />)}
         </Carousel>
       </div>
     )
